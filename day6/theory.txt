@@ -1,0 +1,234 @@
+# 🐍 Day 6: Python Modules, Imports & Packages
+
+## 📌 What I Learned Today
+
+Today, I learned how Python modules work, how to import functions from other files, what `__pycache__` is, and how to import modules from different folders using packages.
+
+### 1. Python Modules
+
+A **module** is a Python file containing reusable code, such as functions, variables, and classes.
+
+For example, I created two files inside a folder named `day5`.
+
+**hello.py**
+
+```python
+def greet(name):
+    return f"Hello, good evening {name}"
+```
+
+**main.py**
+
+```python
+import hello
+
+print(hello.greet("Prathibha"))
+```
+
+**Output:**
+
+```text
+Hello, good evening Prathibha
+```
+
+**What I understood:**
+
+* `hello.py` is a module.
+* `import hello` imports the module.
+* `hello.greet()` calls the `greet()` function defined inside that module.
+* Modules help us organize and reuse code instead of writing everything in one file.
+
+### 2. Different Ways to Import Modules
+
+Python provides different ways to import code.
+
+**Method 1: Import the entire module**
+
+```python
+import hello
+
+print(hello.greet("Prathibha"))
+```
+
+**Method 2: Import a specific function**
+
+```python
+from hello import greet
+
+print(greet("Prathibha"))
+```
+
+**Method 3: Import the module using an alias**
+
+```python
+import hello as h
+
+print(h.greet("Prathibha"))
+```
+
+All three methods can produce the same output.
+
+### 3. Understanding `__pycache__`
+
+When I imported `hello.py`, Python created a `__pycache__` directory.
+
+Example:
+
+```text
+day5/
+├── main.py
+├── hello.py
+└── __pycache__/
+    └── hello.cpython-313.pyc
+```
+
+**What is `__pycache__`?**
+
+It is a directory where Python stores cached bytecode files for imported modules.
+
+**What is `hello.cpython-313.pyc`?**
+
+* `hello`: The module name.
+* `cpython`: The Python implementation.
+* `313`: Python version 3.13.
+* `.pyc`: A compiled Python bytecode file.
+
+Python can reuse valid cached bytecode to avoid recompiling a module unnecessarily.
+
+**Key takeaway:** Python manages `__pycache__` automatically. I do not need to create or edit it manually.
+
+### 4. Understanding Python Packages
+
+A **package** is a way to organize related Python modules into directories.
+
+Consider this structure:
+
+```text
+python_project/
+├── day5/
+│   ├── __init__.py
+│   └── hello.py
+│
+└── day6/
+    ├── __init__.py
+    └── main.py
+```
+
+Here:
+
+* `day5` is a package.
+* `hello.py` is a module inside `day5`.
+* `day6` is another package.
+* `main.py` is a module inside `day6`.
+* `__init__.py` marks each directory as a regular Python package.
+
+Modern Python also supports namespace packages without `__init__.py`, but I used `__init__.py` to learn the traditional package structure.
+
+### 5. Importing a Function from Another Folder
+
+Suppose `hello.py` is inside `day5`, while `main.py` is inside `day6`.
+
+**day5/hello.py**
+
+```python
+def greet(name):
+    return f"Hello, good evening {name}"
+```
+
+**day6/main.py**
+
+```python
+from day5.hello import greet
+
+print(greet("Prathibha"))
+```
+
+**Output:**
+
+```text
+Hello, good evening Prathibha
+```
+
+The import statement:
+
+```python
+from day5.hello import greet
+```
+
+means:
+
+* `day5` → Package name.
+* `hello` → Module name.
+* `greet` → Function name.
+
+This allows me to reuse a function defined in one folder from code located in another folder.
+
+### 6. Running Python Modules Correctly
+
+To run the example, I should open the terminal in the parent directory containing both `day5` and `day6`.
+
+Project structure:
+
+```text
+python_project/
+├── day5/
+│   ├── __init__.py
+│   └── hello.py
+└── day6/
+    ├── __init__.py
+    └── main.py
+```
+
+Run this command from inside `python_project`:
+
+```powershell
+python -m day6.main
+```
+
+**Why use `python -m day6.main`?**
+
+The `-m` option runs `day6.main` as a module. Running it from the parent directory allows Python to locate the `day5` package through the normal module search path.
+
+### 7. Module vs Package
+
+| Feature     | Module                        | Package                               |
+| ----------- | ----------------------------- | ------------------------------------- |
+| Meaning     | A Python file containing code | A directory organizing Python modules |
+| Example     | `hello.py`                    | `day5/`                               |
+| Purpose     | Store reusable code           | Organize related modules              |
+| Can contain | Functions, classes, variables | Modules and subpackages               |
+
+**Simple analogy:**
+
+* Module = A book.
+* Package = A bookshelf containing related books.
+
+## 💡 Key Takeaways
+
+Today, I learned:
+
+* What Python modules are.
+* How to import an entire module.
+* How to import a specific function.
+* How to use aliases while importing.
+* What `__pycache__` and `.pyc` files mean.
+* What Python packages are.
+* How to import functions from another folder.
+* Why the working directory matters when importing modules.
+* How to run a package module using `python -m`.
+
+## 🎯 Practice Tasks
+
+1. Create a module named `calculator.py` containing addition, subtraction, multiplication, and division functions.
+2. Import these functions into another Python file.
+3. Create two packages and import a function from one package into another.
+4. Experiment with `import module` and `from module import function`.
+5. Observe how Python creates `__pycache__` after importing a module.
+
+## 🚀 My Progress
+
+**Day 6 completed!**
+
+I am learning to write modular, reusable Python code and organize projects using modules and packages. These concepts will help me build larger applications with cleaner code and better structure.
+
+**Next goal:** Learn Python exception handling using `try`, `except`, `else`, and `finally`.

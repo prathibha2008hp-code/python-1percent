@@ -6,4 +6,13 @@ print(f"""================\n temperature converter \n=================== \n
 celsius : {temp_celsius}
 Fahrenheit : {temp_fah})
 Kelvin : {temp_kel}
-""")
+""")#output
+""" enter temperature in celsius35.0
+================
+ temperature converter 
+=================== 
+ 
+celsius : 35.0
+Fahrenheit : 95.0)
+Kelvin : 308.15
+ """
