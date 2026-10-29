@@ -1,2 +1,2 @@
-from day5.hello1 import greet
+import hello
 print(greet("prathibha"))
